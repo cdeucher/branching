@@ -1,0 +1,118 @@
+---
+version: 2.1
+
+orbs:
+  sonarcloud: sonarsource/sonarcloud@1.0.3
+
+executors:
+  default:
+    resource_class: large
+    environment:
+      NODE_OPTIONS: --max_old_space_size=8192
+    docker:
+      - image: cimg/node:17.7.2
+    working_directory: ~/workspace
+
+references:
+  restore_dependencies_cache: &restore_dependencies_cache
+    restore_cache:
+      keys:
+        - dependencies-{{ checksum "package_cache.json" }}
+        - dependencies-
+
+  restore_source_cache: &restore_source_cache
+    restore_cache:
+      keys:
+        - source-{{ .Branch }}-{{ .Revision }}
+        - source-{{ .Branch }}-
+
+  generate_dependencies_cache_checksum: &generate_dependencies_cache_checksum
+    run:
+      name: Dependencies cache checksum
+      command: |
+        cat package.json > package_cache.json
+
+commands:
+  restore-source-checksum-cache:
+    description: "This command will restore the source code from cache"
+    steps:
+      - *restore_source_cache
+      - run: git checkout -- .
+      - *generate_dependencies_cache_checksum
+      - *restore_dependencies_cache
+
+jobs:
+  bootstrap:
+    executor: default
+    steps:
+      - checkout
+      - run: git gc
+      - save_cache:
+          key: source-{{ .Branch }}-{{ .Revision }}
+          paths:
+            - '.git'
+      - run: git checkout -- .
+      - *generate_dependencies_cache_checksum
+      - *restore_dependencies_cache
+
+      - run:
+          name: Starting environment
+          command: npm run bootstrap
+
+      - save_cache:
+          key: dependencies-{{ checksum "package_cache.json" }}
+          paths:
+            - 'node_modules'
+
+  code-lint:
+    executor: default
+    steps:
+      - restore-source-checksum-cache
+      - run:
+          name: Build web
+          command: npm run lint
+
+  unit-test:
+    executor: default
+    description: "This command will run the unit tests"
+    steps:
+      - restore-source-checksum-cache
+      - run:
+          name: Run tests
+          command: npm run test
+
+  sonar:
+    executor: default
+    description: "This command will run the sonar analysis"
+    steps:
+      - checkout
+      - sonarcloud/scan
+
+commit-workflow-filters: &commit-workflow-filters
+  branches:
+    only:
+      - /feature\/.*/
+      - develop
+      - master
+      - main
+
+workflows:
+  version: 2
+  commit-workflow:
+    jobs:
+      - bootstrap:
+          filters: *commit-workflow-filters
+      - code-lint:
+          requires:
+            - bootstrap
+          filters: *commit-workflow-filters
+      - unit-test:
+          name: unit-test
+          requires:
+            - code-lint
+          filters: *commit-workflow-filters
+      - sonar:
+          context: SonarCloud
+          requires:
+            - unit-test
+          filters: *commit-workflow-filters

@@ -1,0 +1,5 @@
+{
+  "name": "cookie",
+  "browser": "./client.ts",
+  "main": "./server.ts"
+}
