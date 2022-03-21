@@ -3,8 +3,8 @@ version: 2.1
 
 orbs:
   sonarcloud: sonarsource/sonarcloud@1.0.3
-  aws-ecr: circleci/aws-ecr@x.y.z
-  aws-ecs: circleci/aws-ecs@0x.y.z
+  aws-ecr: circleci/aws-ecr@8.0.0
+  aws-ecs: circleci/aws-ecs@2.2.1
 
 executors:
   default:
