@@ -110,39 +110,37 @@ workflows:
       - bootstrap:
           filters: *commit-workflow-filters
       - code-lint:
+          context: SonarCloud
           requires:
             - bootstrap
+          post-steps:
+            - jira/notify:
+                environment_type: testing
+                job_type: deployment
           filters: *commit-workflow-filters
       - unit-test:
+          context: SonarCloud
           name: unit-test
           requires:
             - code-lint
+          post-steps:
+            - jira/notify:
+                environment_type: testing
+                job_type: deployment
           filters: *commit-workflow-filters
       - sonar:
           context: SonarCloud
           requires:
             - unit-test
+          post-steps:
+            - jira/notify:
+                environment_type: testing
+                job_type: deployment
           filters: *commit-workflow-filters
 
   release-workflow:
     jobs:
       - bootstrap:
-          filters: *release-workflow-filters
-      - code-lint:
-          requires:
-            - bootstrap
-          filters: *release-workflow-filters
-      - unit-test:
-          name: unit-test
-          requires:
-            - bootstrap
-          filters: *release-workflow-filters
-      - sonar:
-          context: SonarCloud
-          requires:
-            - bootstrap
-          post-steps:
-            - jira/notify
           filters: *release-workflow-filters
       - aws-ecr/build-and-push-image:
           context: SonarCloud
@@ -155,15 +153,21 @@ workflows:
           skip-when-tags-exist: false
           tag: 'latest,001'
           requires:
-            - sonar
-            - unit-test
-            - code-lint
+            - bootstrap
+          post-steps:
+            - jira/notify:
+                environment_type: production
+                job_type: deployment
           filters: *release-workflow-filters
-      #- aws-ecs/deploy-service-update:
-      #    context: SonarCloud
-      #    requires:
-      #      - aws-ecr/build-and-push-image
-      #    family: "${PREFIX}-service"
-      #    cluster-name: "${PREFIX}-cluster"
-      #    container-image-name-updates: "container=${PREFIX}-service,tag=${TAG}"
-      #    filters: *release-workflow-filters
+      - aws-ecs/deploy-service-update:
+          context: SonarCloud
+          family: "${PREFIX}-service"
+          cluster-name: "${PREFIX}-cluster"
+          container-image-name-updates: "container=${PREFIX}-service,tag=${TAG}"
+          requires:
+            - build-image
+          post-steps:
+            - jira/notify:
+                environment_type: production
+                job_type: deployment
+          filters: *release-workflow-filters
