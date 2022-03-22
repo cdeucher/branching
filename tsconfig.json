@@ -1,6 +1,29 @@
 {
-  "extends": "@pawjs/pawjs/tsconfig.json",
-  "include": [
-    "src"
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "target": "ES2016",
+    "allowJs": true,
+    "checkJs": false,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "baseUrl": "./",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "jsx": "react"
+  },
+  "include": ["src"],
+  "exclude": [
+    "./src/**/*.stories.tsx",
+    "./src/**/*.stories.ts",
+    "./src/**/*.stories.jsx",
+    "./src/**/*.stories.js",
+    "./src/**/*.stories.mdx"
   ]
 }

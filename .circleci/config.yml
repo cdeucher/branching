@@ -59,8 +59,9 @@ jobs:
       - *restore_dependencies_cache
 
       - run:
-          name: Starting environment
-          command: npm run bootstrap
+          name: Bootstrap
+          command: |
+            npm run bootstrap            
 
       - save_cache:
           key: dependencies-{{ checksum "package_cache.json" }}
@@ -72,7 +73,7 @@ jobs:
     steps:
       - restore-source-checksum-cache
       - run:
-          name: Build web
+          name: Lint
           command: npm run lint
 
   unit-test:
@@ -90,6 +91,16 @@ jobs:
     steps:
       - checkout
       - sonarcloud/scan
+
+  build:
+    executor: default
+    environment:
+      CI: false
+    steps:
+      - restore-source-checksum-cache
+      - run:
+          name: Build
+          command: npm run build
 
 commit-workflow-filters: &commit-workflow-filters
   branches:
@@ -122,7 +133,7 @@ workflows:
           context: SonarCloud
           name: unit-test
           requires:
-            - code-lint
+            - bootstrap
           post-steps:
             - jira/notify:
                 environment_type: testing
@@ -131,7 +142,18 @@ workflows:
       - sonar:
           context: SonarCloud
           requires:
+            - bootstrap
+          post-steps:
+            - jira/notify:
+                environment_type: testing
+                job_type: deployment
+          filters: *commit-workflow-filters
+      - build:
+          context: SonarCloud
+          requires:
+            - sonar
             - unit-test
+            - code-lint
           post-steps:
             - jira/notify:
                 environment_type: testing
@@ -159,15 +181,15 @@ workflows:
                 environment_type: production
                 job_type: deployment
           filters: *release-workflow-filters
-      - aws-ecs/deploy-service-update:
-          context: SonarCloud
-          family: "${PREFIX}-service"
-          cluster-name: "${PREFIX}-cluster"
-          container-image-name-updates: "container=${PREFIX}-service,tag=${TAG}"
-          requires:
-            - build-image
-          post-steps:
-            - jira/notify:
-                environment_type: production
-                job_type: deployment
-          filters: *release-workflow-filters
+      #- aws-ecs/deploy-service-update:
+      #    context: SonarCloud
+      #    family: "${PREFIX}-service"
+      #    cluster-name: "${PREFIX}-cluster"
+      #    container-image-name-updates: "container=${PREFIX}-service,tag=${TAG}"
+      #    requires:
+      #      - build-image
+      #    post-steps:
+      #      - jira/notify:
+      #          environment_type: production
+      #          job_type: deployment
+      #    filters: *release-workflow-filters
