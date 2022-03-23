@@ -3,7 +3,8 @@ version: 2.1
 
 orbs:
   sonarcloud: sonarsource/sonarcloud@1.0.3
-  aws-ecr: circleci/aws-ecr@8.0.0
+  aws-cli: circleci/aws-cli@2.1.0
+  aws-ecr: circleci/aws-ecr@7.2.0
   aws-ecs: circleci/aws-ecs@2.2.1
   jira: circleci/jira@1.3.1
 
@@ -102,6 +103,29 @@ jobs:
           name: Build
           command: npm run build
 
+  update-ecs-service:
+    docker:
+      - image: 'cimg/python:3.9.1'
+    steps:
+      - aws-cli/setup:
+          aws-access-key-id: AWS_ACCESS_KEY_ID
+          aws-region: AWS_DEFAULT_REGION
+          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+      - run:
+          command: |
+            ECS_TASK_FAMILY="hello-world-app"
+            ECS_SERVICE="hello-world-service"
+            ECS_CLUSTER="example-cluster"
+            NEW_IMAGE="${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/devops:latest"
+            
+            TASK_DEFINITION=$(aws ecs describe-task-definition --task-definition "${ECS_TASK_FAMILY}" --region "${AWS_REGION}")
+            NEW_TASK_DEFINTIION=$(echo $TASK_DEFINITION | jq --arg IMAGE "$NEW_IMAGE" '.taskDefinition | .containerDefinitions[0].image = $IMAGE | del(.taskDefinitionArn) | del(.revision) | del(.status) | del(.requiresAttributes) | del(.compatibilities) | del(.registeredAt) | del(.registeredBy)')
+            TASK_REVISION=$(aws ecs register-task-definition --region "${AWS_REGION}" --cli-input-json "$NEW_TASK_DEFINTIION" | jq -r '.taskDefinition.revision')
+            TASK=$(aws ecs list-tasks --cluster "${ECS_CLUSTER}" --desired-status RUNNING | jq '.taskArns[0]' | tr -d '"')
+            TASK_ID="${TASK##*/}"                           
+            aws ecs update-service --cluster "${ECS_CLUSTER}" --service "${ECS_SERVICE}" --task-definition "${ECS_TASK_FAMILY}:${TASK_REVISION}" --desired-count 1
+            aws ecs stop-task --cluster "${ECS_CLUSTER}" --task ${TASK_ID}            
+
 commit-workflow-filters: &commit-workflow-filters
   branches:
     only:
@@ -168,7 +192,7 @@ workflows:
           context: SonarCloud
           name: build-image
           create-repo: true
-          dockerfile: image/Dockerfile
+          dockerfile: Dockerfile
           no-output-timeout: 20m
           profile-name: devops-007
           repo: devops
@@ -181,15 +205,12 @@ workflows:
                 environment_type: production
                 job_type: deployment
           filters: *release-workflow-filters
-      #- aws-ecs/deploy-service-update:
-      #    context: SonarCloud
-      #    family: "${PREFIX}-service"
-      #    cluster-name: "${PREFIX}-cluster"
-      #    container-image-name-updates: "container=${PREFIX}-service,tag=${TAG}"
-      #    requires:
-      #      - build-image
-      #    post-steps:
-      #      - jira/notify:
-      #          environment_type: production
-      #          job_type: deployment
-      #    filters: *release-workflow-filters
+      - update-ecs-service:
+          context: SonarCloud
+          requires:
+            - build-image
+          post-steps:
+            - jira/notify:
+                environment_type: production
+                job_type: deployment
+          filters: *release-workflow-filters

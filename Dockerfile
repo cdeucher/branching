@@ -3,7 +3,8 @@ RUN mkdir -p /app
 WORKDIR /app
 COPY . /app/
 
-RUN npm install -g -only=production
+RUN npm install
+RUN npm link typescript
 RUN npm run build
 
 # --------------> The production image
