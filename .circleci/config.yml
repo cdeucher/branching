@@ -35,6 +35,8 @@ references:
       name: Dependencies cache checksum
       command: |
         cat package.json > package_cache.json
+        cat packages/app/package.json >> package_cache.json
+        cat packages/pwa/package.json >> package_cache.json
 
 commands:
   restore-source-checksum-cache:
@@ -62,12 +64,14 @@ jobs:
       - run:
           name: Bootstrap
           command: |
-            npm run bootstrap            
+            yarn bootstrap            
 
       - save_cache:
           key: dependencies-{{ checksum "package_cache.json" }}
           paths:
             - 'node_modules'
+            - 'packages/app/node_modules'
+            - 'packages/pwa/node_modules'
 
   code-lint:
     executor: default
@@ -75,7 +79,7 @@ jobs:
       - restore-source-checksum-cache
       - run:
           name: Lint
-          command: npm run lint
+          command: yarn lint
 
   unit-test:
     executor: default
@@ -84,7 +88,7 @@ jobs:
       - restore-source-checksum-cache
       - run:
           name: Run tests
-          command: npm run test
+          command: yarn test
 
   sonar:
     executor: default
@@ -101,7 +105,7 @@ jobs:
       - restore-source-checksum-cache
       - run:
           name: Build
-          command: npm run build
+          command: yarn build
 
   update-ecs-service:
     docker:

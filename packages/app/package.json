@@ -2,13 +2,6 @@
   "name": "app",
   "version": "0.0.1",
   "private": true,
-  "workspaces": {
-    "packages": [
-      "packages/app",
-      "packages/pwa",
-      "packages/core"
-    ]
-  },
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^12.1.4",
@@ -25,10 +18,6 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "bootstrap": "yarn install && npx lerna bootstrap",
-    "bootstrap:ci": "yarn install --frozen-lockfile && npx lerna bootstrap --ci",
-    "clean": "npx lerna clean --yes && rm -rf /tmp/metro-*",
-    "clean:root": "npx lerna clean --yes && rm -rf node_modules && rm -rf /tmp/metro-*",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -54,8 +43,16 @@
     ]
   },
   "devDependencies": {
-    "@typescript-eslint/parser": "^5.18.0",
-    "lerna": "^4.0.0",
-    "prettier": "2.6.2"
+    "@typescript-eslint/eslint-plugin": "^5.16.0",
+    "@typescript-eslint/parser": "^5.16.0",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.11.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-react": "^1.1.7",
+    "eslint-plugin-import-helpers": "^1.2.1",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-sonarjs": "^0.12.0",
+    "prettier": "^2.6.0",
+    "typescript": "^4.6.2"
   }
 }
