@@ -1,5 +1,12 @@
 
 # 
+
+## Environment
+- node: v14.19.0
+- yarn: 1.22.17
+- lerna: 4.0.0
+- npx: 6.14.16
+
 ## VSCode Extensions
 1) Extensions
 - dbaeumer.vscode-eslint
@@ -39,7 +46,8 @@ End) Links
 - Eslint/Prettier - https://dev.to/otaviopalma/criando-um-projeto-react-com-typescript-eslint-e-prettier-2okg
 - Debug - https://code.visualstudio.com/docs/nodejs/reactjs-tutorial
 - Composing - https://www.pluralsight.com/guides/composing-react-components-with-typescript
-- Monorepo - https://jibin.tech/monorepo-with-create-react-app/
+- Monorepo - https://vijayt.com/post/sharing-components-using-a-monorepo-built-with-lerna-and-yarn-workspace/
+           - https://github.com/vijayst/monorepo
 - TypeScript - https://www.thisdot.co/blog/getting-started-with-react-and-typescript
 
 

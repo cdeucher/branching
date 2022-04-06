@@ -1,5 +1,5 @@
 {
-  "name": "app",
+  "name": "@cabd/monorepo",
   "version": "0.0.1",
   "private": true,
   "workspaces":{ 
@@ -24,6 +24,7 @@
     "bootstrap:ci": "yarn install --frozen-lockfile && npx lerna bootstrap --ci",
     "clean": "npx lerna clean --yes && rm -rf /tmp/metro-*",
     "clean:root": "npx lerna clean --yes && rm -rf node_modules && rm -rf /tmp/metro-*",
+    "start:app": "cd packages/app && yarn start",
     "start": "react-scripts start",
     "build2": "react-scripts build",
     "build": "lerna run build",

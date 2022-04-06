@@ -1,9 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@cabd/core/*": ["../core/*"]
-    },    
+    "baseUrl": ".",   
     "target": "es5",
     "lib": [
       "dom",
@@ -27,5 +24,5 @@
   "include": [
     "src"
   ],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "lib"]
 }
