@@ -2,12 +2,8 @@
   "name": "app",
   "version": "0.0.1",
   "private": true,
-  "workspaces": {
-    "packages": [
-      "packages/app",
-      "packages/pwa",
-      "packages/core"
-    ]
+  "workspaces":{ 
+    "packages":["packages/*"]
   },
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.3",
@@ -17,7 +13,6 @@
     "@types/node": "^16.11.26",
     "@types/react": "^17.0.43",
     "@types/react-dom": "^17.0.14",
-    "core": "0.0.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-scripts": "5.0.0",
@@ -30,7 +25,8 @@
     "clean": "npx lerna clean --yes && rm -rf /tmp/metro-*",
     "clean:root": "npx lerna clean --yes && rm -rf node_modules && rm -rf /tmp/metro-*",
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build2": "react-scripts build",
+    "build": "lerna run build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "tsc -p tsconfig.json && eslint \"src/**/{*.ts,*.js,*.tsx}\""

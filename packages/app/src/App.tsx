@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { HelloWorld } from 'core';
+import { HelloWorld } from '@cabd/core/components/utils/HelloWorld';
 
 function App() {
   return (

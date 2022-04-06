@@ -30,13 +30,16 @@ yarn add --dev prettier
 - Create `lerna.json` file.
 - Setup `package.json` file:
 ```
-  "workspaces": {
-    "packages": [
-      "packages/app",
-      "packages/pwa"
-    ]
-  },  
+  "workspaces": ["packages/*"},  
 ```
-7) Composing
-- https://www.pluralsight.com/guides/composing-react-components-with-typescript
+
+
+End) Links
+- Project Setup - https://www.jetbrains.com/webstorm/guide/tutorials/react_typescript_tdd/project_setup/
+- Eslint/Prettier - https://dev.to/otaviopalma/criando-um-projeto-react-com-typescript-eslint-e-prettier-2okg
+- Debug - https://code.visualstudio.com/docs/nodejs/reactjs-tutorial
+- Composing - https://www.pluralsight.com/guides/composing-react-components-with-typescript
+- Monorepo - https://jibin.tech/monorepo-with-create-react-app/
+- TypeScript - https://www.thisdot.co/blog/getting-started-with-react-and-typescript
+
 
