@@ -1,4 +1,3 @@
-
 # CI/CD
 ![Tools](img/devops.png "Tools")
 
@@ -23,6 +22,7 @@
       - Version Scan
       - SAST
     - \*DAST 
+
 - [Deploy - S3/CLoudFront (Blue/Green)](https://github.com/cdeucher/terraform-aws-monorepo/tree/master/terraform-aws-s3-cloudfront)
     - Security Headers
     - Geographic restrictions
