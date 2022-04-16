@@ -1,12 +1,10 @@
 {
-  "name": "@cabd/monorepo",
+  "name": "@cabd/core",
   "version": "0.0.1",
   "private": true,
-  "workspaces":{ 
-    "packages":["packages/*"]
-  },
+  "main": "lib/index.js",
   "dependencies": {
-    "@testing-library/jest-dom": "^5.16.3",
+    "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.4.1",
@@ -20,17 +18,12 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "bootstrap": "yarn install && npx lerna bootstrap",
-    "bootstrap:ci": "yarn install --frozen-lockfile && npx lerna bootstrap --ci",
-    "clean": "npx lerna clean --yes && rm -rf /tmp/metro-*",
-    "clean:root": "npx lerna clean --yes && rm -rf node_modules && rm -rf /tmp/metro-*",
-    "start:app": "cd packages/app && yarn start",
+    "build": "tsc",
+    "dev": "tsc -w",    
     "start": "react-scripts start",
     "build2": "react-scripts build",
-    "build": "lerna run build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "lint": "tsc -p tsconfig.json && eslint \"src/**/{*.ts,*.js,*.tsx}\""
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
@@ -51,8 +44,12 @@
     ]
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.18.0",
     "@typescript-eslint/parser": "^5.18.0",
-    "lerna": "^4.0.0",
-    "prettier": "2.6.2"
+    "babel-eslint": "^10.1.0",
+    "customize-cra": "^1.0.0",
+    "eslint": "^8.12.0",
+    "eslint-plugin-react": "^7.29.4",
+    "react-app-rewired": "^2.2.1"
   }
 }
