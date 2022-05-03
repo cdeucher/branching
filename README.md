@@ -1,5 +1,5 @@
 # Frontend
-## Monorepo
+## Monorepo/Branching
 ![Monorepo](img/monorepo.jpeg "Monorepo")
 
 ## CI/CD
