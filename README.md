@@ -1,6 +1,12 @@
 # Frontend
 ## Monorepo/Branching
 ![Monorepo](img/monorepo.jpeg "Monorepo")
+ - [GitFlow](branching/gitflow.md)
+ - GitHub Flow
+ - GitLab Flow
+ - Trunk-based development
+
+
 
 ## CI/CD
 ![Tools](img/devops.png "Tools")
@@ -36,7 +42,7 @@
 
 ---
 - [Setup - Monorepo](README_MONOREPO.md)
-    - \*Branching (Trunk Based vs Git Flow)
+    - \*Branching
     - \*Atomic Commit
     - Tools
 - [CircleCI - CodeQuality](.circleci/config.yml)
