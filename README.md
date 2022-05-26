@@ -1,12 +1,13 @@
 # Frontend
 ## Branching
 ![Monorepo](img/monorepo.jpeg "Monorepo")
+ - [Version Numbers](img/version-number.webp "version number")
+ - [Rebase | Merge](branching/merge.md)
  - [GitFlow](branching/gitflow.md)
  - GitHub Flow
  - GitLab Flow
  - [Trunk-based](branching/trunkbased.md)
- - [Version Numbers](img/version-number.webp "version number")
- - Rebase(develop),Rebase(feature),Merge(master)
+ - [Feature-flag](flagsmith/readme.md)
  - [Setup - Monorepo](README_MONOREPO.md)
 
 

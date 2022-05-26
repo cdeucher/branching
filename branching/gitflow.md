@@ -1,6 +1,7 @@
 
 ![GitFlow](img/gitflow.png)
 ![GitFlow](img/gitflow2.png)
+![GitFlow](img/gitflow3.svg)
 
 ## 
  - Main/Master: Código em produção.
@@ -33,3 +34,4 @@ As branches de release são branches de trabalho de QA.
   - https://nvie.com/posts/a-successful-git-branching-model/
 - https://blog.betrybe.com/git/git-flow/
 - https://www.flagship.io/git-branching-strategies/
+- https://reviewpad.com/blog/github-flow-trunk-based-development-and-code-reviews/
