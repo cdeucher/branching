@@ -1,7 +1,11 @@
+<style>
+o { color: Orange }
+</style>
+# <o>[Voltar](../README.md)
 
 ![GitFlow](img/gitflow.png)
 ![GitFlow](img/gitflow2.png)
-![GitFlow](img/gitflow3.svg)
+<img src="img/gitflow3.svg" style="background-color: #fff;" />
 
 ## 
  - Main/Master: Código em produção.

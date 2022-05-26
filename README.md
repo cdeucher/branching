@@ -1,18 +1,36 @@
-# Frontend
-## Branching
-![Monorepo](img/monorepo.jpeg "Monorepo")
- - [Version Numbers](img/version-number.webp "version number")
- - [Rebase | Merge](branching/merge.md)
- - [GitFlow](branching/gitflow.md)
- - GitHub Flow
- - GitLab Flow
- - [Trunk-based](branching/trunkbased.md)
- - [Feature-flag](flagsmith/readme.md)
+![under-construction](img/under-construction.jpg)
+
+<style>
+r { color: red }
+</style>
+
+---
+
+- [Branching](#branching)
+- [Monorepo](#monorepo)
+- [CI/CD](#cicd)
+
+---
+
+<a name="branching">![branching default](img/branching-default.jpg)</a>
+
+ - [Version Numbers | Semantic Versioning](branching/semantic-numbers.md "version number")
+ - [Git](branching/git.md)
+ - Branching Flow
+    - [Git Flow](branching/gitflow.md)
+    - <r>GitHub Flow
+    - <r>GitLab Flow
+    - [Trunk Based](branching/trunkbased.md)
+        - [Feature Flag](flagsmith/readme.md)
+    - [Release Flow](branching/releaseflow.md)
+ - [Harnds-on](branching/hands-on.md)
+
+## <a name="monorepo"></a>Monorepo
  - [Setup - Monorepo](README_MONOREPO.md)
 
 
-
-## CI/CD
+---
+## <a name="cicd"></a>CI/CD
 ![Tools](img/devops.png "Tools")
   - [CircleCI - CodeQuality](.circleci/config.yml)
   - \*Manual Code Review
@@ -64,3 +82,7 @@
     - Datadog
 
 \*Topic to discuss.
+
+
+### Links
+- [Markdown](https://github.github.com/gfm/#container-blocks)
