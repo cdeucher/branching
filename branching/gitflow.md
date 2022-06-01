@@ -1,5 +1,7 @@
 # [Voltar](../README.md)
 
+# GitFlow
+
 [Specification](https://nvie.com/posts/a-successful-git-branching-model/)
 
 ![GitFlow](img/gitflow.png)
