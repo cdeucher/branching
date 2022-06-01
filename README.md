@@ -15,7 +15,7 @@
  - [Git](branching/git.md)
  - Branching Flow
     - [Git Flow](branching/gitflow.md)
-    - <r>GitHub Flow
+    - [GitHub Flow](https://docs.github.com/en/get-started/quickstart/github-flow)
     - <r>GitLab Flow
     - [Trunk Based](branching/trunkbased.md)
         - [Feature Flag](flagsmith/readme.md)
