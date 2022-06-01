@@ -5,7 +5,7 @@ o { color: Orange }
 
 [Release-flow](http://releaseflow.org)
 
-<img src="img/releaseflow-main.png" style="background-color: #fff;" />
+<img src="img/release-flow.png" style="background-color: #fff;" />
 
 
 # Links
