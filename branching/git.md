@@ -1,9 +1,5 @@
-<style>
-r { color: Red }
-o { color: Orange }
-g { color: Green }
-</style>
-# <o>[Voltar](../README.md)
+
+# [Voltar](../README.md)
 
 ![Merge](img/merge.gif)
 ![Merge](img/merge2.gif)
