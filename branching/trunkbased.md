@@ -1,7 +1,9 @@
 
 # [Voltar](../README.md)
 
- [Trunk-based](https://trunkbaseddevelopment.com)
+# Trunk-based
+
+[Specification](https://trunkbaseddevelopment.com)
 
 ![trunk-based](img/trunk-based.png)
 ![TrunkBased2](img/feature-branch.png)
