@@ -1,7 +1,5 @@
-<style>
-o { color: Orange }
-</style>
-# <o>[Voltar](../README.md)
+
+# [Voltar](../README.md)
 
 
 [![Feature Flag, Remote Config and A/B Testing platform, Flagsmith](https://github.com/Flagsmith/flagsmith/raw/main/static-files/hero.png)](https://www.flagsmith.com/)
