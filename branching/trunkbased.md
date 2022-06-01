@@ -3,9 +3,7 @@
 
  [Trunk-based](https://trunkbaseddevelopment.com)
 
-[trunk-based](img/trunk-based.png)
-
-![TrunkBased1](img/trunk-based.svg)
+![trunk-based](img/trunk-based.png)
 ![TrunkBased2](img/feature-branch.png)
 ![Feature Flag](img/featureflag.avif)
 
