@@ -1,9 +1,5 @@
 ![under-construction](img/under-construction.jpg)
 
-<style>
-r { color: red }
-</style>
-
 ---
 
 - [Branching](#branching)
