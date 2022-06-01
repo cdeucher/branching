@@ -1,9 +1,4 @@
-<style>
-r { color: Red }
-o { color: Orange }
-g { color: Green }
-</style>
-# <o>[Voltar](../README.md)
+# [Voltar](../README.md)
 
 # Branching Flow
     - develop->(rebase)->feature->(PR/Review/Merge)->develop
