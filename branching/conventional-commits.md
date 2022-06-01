@@ -1,5 +1,7 @@
 # [Voltar](../README.md)
 
+# Conventional Commits
+
 [Specification](https://www.conventionalcommits.org/en/v1.0.0/#specification)
 
 - fix: a commit of the type fix patches a bug in your codebase (this correlates with PATCH in Semantic Versioning).
