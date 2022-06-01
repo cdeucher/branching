@@ -2,6 +2,8 @@
 
 # Semantic Versioning
 
+[Specification](https://semver.org/spec/v2.0.0.html)
+
 ![Semantic Versioning](img/version-number.webp)
 
 ---
