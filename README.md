@@ -11,6 +11,7 @@
 <a name="branching">![branching default](img/branching-default.jpg)</a>
 
  - [Version Numbers | Semantic Versioning](branching/semantic-numbers.md "version number")
+ - [Conventional Commits](branching/conventional-commits.md)
  - [Git](branching/git.md)
  - Branching Flow
     - [Git Flow](branching/gitflow.md)
