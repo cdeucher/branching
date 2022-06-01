@@ -3,11 +3,7 @@
 
  [Trunk-based](https://trunkbaseddevelopment.com)
 
-<DIV CLASS="foo">
-
-<img src="img/trunk-based.svg" title="*"/>
-
-</DIV>
+[trunk-based](img/trunk-based.png)
 
 ![TrunkBased1](img/trunk-based.svg)
 ![TrunkBased2](img/feature-branch.png)
