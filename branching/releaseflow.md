@@ -1,6 +1,6 @@
 # [Voltar](../README.md)
 
-[Release-flow](http://releaseflow.org)
+[Specification](http://releaseflow.org)
 
 - FIX: cherry-pick (master -> release)
 - DEPLOY: TAG na release.
