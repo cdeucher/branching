@@ -1,7 +1,4 @@
-<style>
-o { color: Orange }
-</style>
-# <o>[Voltar](README.md)
+# [Voltar](README.md)
 
 ![Monorepo](img/monorepo.jpeg "Monorepo")
 
