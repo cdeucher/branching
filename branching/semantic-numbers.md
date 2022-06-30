@@ -1,6 +1,6 @@
 # [Voltar](../README.md)
 
-# Semantic Versioning
+# Semantic Versioning (SemVer)
 
 [Specification](https://semver.org/spec/v2.0.0.html)
 
@@ -12,6 +12,15 @@
 - MINOR version when you add functionality in a backward-compatible manner.
 - PATCH version when you make backward-compatible bug fixes.
 
+---
+
+# Calendar Versioning (CalVer)
+
+[Specification](https://calver.org/#scheme)
+
+- YYYY.MINOR.MICRO
+- YY.MINOR.MICRO
+- YYYY.0M
 
 
 ---
