@@ -8,7 +8,7 @@
  - Branching Flow
     - [Git Flow](branching/gitflow.md)
     - [GitHub Flow](https://docs.github.com/en/get-started/quickstart/github-flow)
-    - <r>GitLab Flow
+    - [GitLab Flow](https://www.zup.com.br/blog/git-workflow)
     - [Trunk Based](branching/trunkbased.md)
         - [Feature Flag](flagsmith/readme.md)
     - [Release Flow](branching/releaseflow.md)
